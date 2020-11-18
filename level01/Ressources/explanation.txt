@@ -1,0 +1,9 @@
+Here, the "find" command from level00 doesn't work.
+
+Passwords are commonly put in etc/passwd.
+If we try to cat, we'll see a bunch of trash lines, and the line flag01.
+It's the only line which contain a password (which is crypted): flag01:42hDRfypTqqnw
+it doen't look Caesar crypted, so we'll use John-The-Ripper (it is indicated as MUST HAVE in the intranet video).
+
+After instaling, we put the login:password (flag01:42hDRfypTqqnw) in a file and we'll do "john {YOUR FILE}".
+John will give us the password "abcdefg", which is the one that unlock the flag !

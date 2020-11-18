@@ -1,0 +1,17 @@
+To find this flag, we will search for the files that we have acces.
+The command: "find /* -user flag00" will search for it
+(you can add "2>/dev/null" at the end of the command so avoid printing errors)
+
+The result without errors is :
+/rofs/usr/sbin/john
+/usr/sbin/john
+
+(thoses files are the same)
+If we cat this file, we have: cdiiddwpgswtgt
+That looks like a Caesar crypted password because it is not realy long and doesn't contain any number
+To decrypt it, you can go on https://md5decrypt.net/Cesar. Here, you can bruteforce all the possible solution.
+(in fact, there is only 25)
+And for Caesar(15), we can see the result nottoohardhere
+That's obviously the password we need to get the flag
+
+so now just do "su flag00" and put the password. You'll be able to execute getflag after this
