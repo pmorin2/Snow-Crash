@@ -1,0 +1,16 @@
+Here, we have a file called level02.pcap
+
+First, we have to download it to our VM usic scp:
+scp '-P 4242' level02@192.168.1.65:level02.pcap .
+note: you'll have to put the flag found before as password
+
+After that, we need to open this file using for exemple wireshark (project's video)
+If we look at the data of each line, we'll see one with "Pas sword:"
+We just have to take all the caracters till the byte 0d:
+
+66  74  5f  77  61  6e  64  72  7f  7f  7f  4e  44  52  65  6c  7f  4c  30  4c
+f   t   _   w   a   n   d   r   DEL DEL DEL N   D   R   e   l   DEL L   0   L
+
+that makes: ft_waNDReL0L
+
+This password will unlock the flag !

