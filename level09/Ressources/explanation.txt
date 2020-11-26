@@ -1,0 +1,36 @@
+Here, we have 2 files called level09 and token
+
+If we try to execute level08, we'll get:
+You need to provied only one arg.
+
+If we try "./level09 token", we'll get:
+tpmhr
+
+You can see it now, but if you want a more explicit exemple, try "./level09 aaaaa":
+abcde
+
+This file will add 1 to the ASCII value of the character, each time it goes forward through the string
+aaa will be a + 0 = a | a + 1 = b | a + 2 = c => abc
+
+Now, if we cat the token, we get: f4kmm6p|=�p�n��DB�Du{��
+This string was obviously crypted with the file level09, so we have to make an uncrypting script:
+<?php
+$str = str_split($argv[1]);
+$nbr = 0;
+foreach($str as $c) {
+        echo(chr(ord($c) - $nbr));
+        $nbr += 1;
+}
+echo("\n");
+?>
+
+We put this in a file like /tmp/hacked.php
+Now, we just have to execute this script with the string inside token:
+php /tmp/hacked.php "$(cat token)"
+
+And we get the token: f3iji1ju5yuevaus41q1afiuq
+We're not finished, because this token is use to do:
+su flag09
+
+Now, we can getflag and get the flag:
+Check flag.Here is your token : s5cAJpM8ev6XHw998pRWG728z

