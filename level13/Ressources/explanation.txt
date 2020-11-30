@@ -1,0 +1,35 @@
+Here, we have a file called level13.
+
+When we try to exec it, we get:
+UID 2013 started us but we we expect 4242
+
+We can't change our UID, so we'll need to change the variable durring the running of the program.
+In order to  do that, in the video of the project, it is said that we'll need gdb.
+
+So first, we have to exec gdb:
+gdb ./level13
+
+then, wi'll get all steps on the main function of the program:
+disas main
+
+we can see the two important steps, the 5th and 6th:
+0x08048595 <+9>:	call   0x8048380 <getuid@plt>
+0x0804859a <+14>:	cmp    $0x1092,%eax
+
+the fist one will get the uid
+and the second will cmp $0x1092 and %eax
+
+To change one of those values, we'll first set a breakpoint on the getuid:
+b *0x8048380
+
+Then, we can run the program with "run", it will stop at the breackpoint
+Now we can make one step using "step" to go to the next line
+do it again to  exec the getuid line and get to the cmp line
+
+If everything is ok, we can "print $eax" (our variable) and we'll get 2013 (our UID)
+Now we can change it:
+set $eax=4242
+
+Then, the last thing we have to do is to make another step to go through the cmp line
+You'll see the flag displayed:
+your token is 2A31L79asukciNyi8uppkEuSx
