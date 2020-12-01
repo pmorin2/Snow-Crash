@@ -1,0 +1,27 @@
+Here, we have no file.
+Let's try to gdb the getflag like we did before:
+gdb getflag
+
+if look at what "disas main" give us, we can see ptrace, which don't allow us to run the program.
+so let's set a breakpoint:
+b ptrace
+
+Now let's "run" and "step" to get right after the ptrace
+If we try to "print $eax" like the previus level, we get -1
+We need to change it to 0 to get the ptrace not returning an error (-1):
+set $eax=0
+
+But now if we try, it still doesn't work
+In the prevews level, we had to deal with getuid, so let's try to set a breakpoint to getuid
+b getuid
+
+Now we'll do the same start: "run" => "step" => "set $eax=0"
+Then, we'll deal with the getuid, so "step" to get to this breakpoint, then "step" again to go right after
+If we look at "print $eax", we can see 2014 which is our id
+On another ssh, we can see using "id flag14" that it's id is 3014
+
+So, we'll put 3014 instead of 2014 int $eax:
+set $eax=3014
+
+Finaly, just "step" one last time to get your flag:
+Check flag.Here is your token : 7QiHafiNa3HVozsaXkawuYrTstxbpABHD8CPnHJ
