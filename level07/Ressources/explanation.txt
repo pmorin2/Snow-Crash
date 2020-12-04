@@ -2,7 +2,7 @@ Here, we have a file called level07
 
 If we try to execute it, it'll print "level07"
 So let's search what we have inside:
-strings level03
+strings level07
 
 We can see 2 interesting lines:
 LOGNAME
